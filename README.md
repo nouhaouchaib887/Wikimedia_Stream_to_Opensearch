@@ -1,4 +1,3 @@
-# Wikimedia_Stream_to_Opensearch
 # Kafka Project: Wikimedia Stream to OpenSearch
 
 ## Project Overview
@@ -29,16 +28,33 @@ This project demonstrates a data pipeline that retrieves real-time event streams
 
 ---
 
-## Setup and Prerequisites
+## Project Files
 
-### 1. Install the following software:
-- **Apache Kafka:** [Download Kafka](https://kafka.apache.org/downloads)
-- **OpenSearch:** [Download OpenSearch](https://opensearch.org/downloads.html)
-- **Python 3.7+** with the following libraries:
-  - `kafka-python`
-  - `sseclient`
-  - `opensearch-py`
+- **`kafka_producer.py`:**
+  Kafka Producer script to send Wikimedia events to Kafka.
+- **`kafka_consumer.py`:**
+  Kafka Consumer script to read data from Kafka and index it into OpenSearch.
+- **`requirements.txt`:**
+  List of Python dependencies.
 
-**Install Python dependencies:**
-```bash
-pip install kafka-python sseclient opensearch-py
+---
+
+## Execution Steps
+
+### 1. Start Kafka
+
+1. Download and extract Kafka.
+
+2. **Start Zookeeper:**
+   ```bash
+   bin/zookeeper-server-start.sh config/zookeeper.properties
+3. **Start Kafka broker:**
+   ```bash
+   bin/kafka-server-start.sh config/server.properties
+4. **Create the Kafka topic::**
+   ```bash
+   bin/kafka-topics.sh --create --topic wikimedia.recentchange --bootstrap-server localhost:9092
+### 2. Run Kafka Producer
+
+   ```bash
+   python kafka_producer.py
