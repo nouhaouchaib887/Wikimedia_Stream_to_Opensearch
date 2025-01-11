@@ -2,40 +2,15 @@
 
 ## Project Overview
 
-This project demonstrates a data pipeline that retrieves real-time event streams from the Wikimedia `RecentChange` API, sends the data to **Apache Kafka**, and then indexes the data into **OpenSearch** for storage, analysis, and visualization.
+his project uses Kafka to ingest real-time data from the Wikimedia stream, Apache Spark Streaming to process the data continuously, and OpenSearch to index and analyze the data.
 
 ---
 
-## Architecture
 
-1. **Wikimedia API (SSE):**
-   - A real-time stream of page changes (edits, creations, deletions) on Wikimedia projects.
-
-2. **Kafka Producer:**
-   - Retrieves events from the Wikimedia API and sends them to a Kafka topic.
-
-3. **Kafka Broker:**
-   - Acts as a distributed messaging platform to store and forward events.
-
-4. **Kafka Consumer:**
-   - Reads the data from Kafka and sends it to OpenSearch.
-
-5. **OpenSearch:**
-   - Stores the data for searching and visualization.
-
-6. **OpenSearch Dashboards:**
-   - Creates visualizations and dashboards for real-time monitoring.
-
----
-
-## Project Files
-
-- **`kafka_producer.py`:**
-  Kafka Producer script to send Wikimedia events to Kafka.
-- **`kafka_consumer.py`:**
-  Kafka Consumer script to read data from Kafka and index it into OpenSearch.
-- **`requirements.txt`:**
-  List of Python dependencies.
+### Key Components:
+1. **Producer** :  Fetches events from Wikimedia and sends them to Kafka.
+2. **Spark Streaming** : Continuously processes Kafka data and performs aggregations.
+3. **Consumer** : Sends the processed Kafka data to OpenSearch.
 
 ---
 
@@ -54,7 +29,29 @@ This project demonstrates a data pipeline that retrieves real-time event streams
 4. **Create the Kafka topic::**
    ```bash
    bin/kafka-topics.sh --create --topic wikimedia.recentchange --bootstrap-server localhost:9092
-### 2. Run Kafka Producer
+5. **Start OpenSearch:**
+   ```bash
+   ./bin/opensearch
+   
+### 2. **Run Kafka Producer**
 
    ```bash
    python kafka_producer.py
+
+### 3. **Run Kafka Producer**
+
+   ```bash
+   python kafka_producer.py
+### 4. **Run Spark Streaming **
+
+   ```bash
+   spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1 spark_streaming.py
+### 5. **Run Kafka Consumer**
+
+   ```bash
+   python consumer.py
+
+
+
+
+
