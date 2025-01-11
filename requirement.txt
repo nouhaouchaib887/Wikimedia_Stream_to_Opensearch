@@ -1,2 +1,4 @@
 kafka-python==2.0.2
-sseclient==0.0.27
+sseclient-py==1.7
+pyspark==3.4.1
+opensearch-py==2.1.0
