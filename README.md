@@ -34,9 +34,23 @@ his project uses Kafka to ingest real-time data from the Wikimedia stream, Apach
    ./bin/opensearch
    
 ### 2. **Run Kafka Producer**
-   ```bash
-   python kafka_producer.py
+```bash
+python kafka_producer.py
+```
 
+### 3. **Run Kafka Producer**
+```bash
+python kafka_producer.py
+```
+
+### 4. **Run Spark Streaming**
+```bash
+spark-submit --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.4.1 spark_streaming.py
+```
+
+### 5. **Run Kafka Consumer**
+```bash
+python consumer.py
 
 
 
